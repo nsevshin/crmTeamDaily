@@ -78,7 +78,7 @@ function startTimer() {
 
     // Every 1000ms (1 second) decrease the set time until it reaches 0.
     timerInterval = setInterval(function () {
-        timerTime -= 2;
+        timerTime -= 1;
         timerClock.text(returnFormattedToSeconds(timerTime));
 
         if (timerTime <= 0) {
