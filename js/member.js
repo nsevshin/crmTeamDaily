@@ -1,22 +1,33 @@
 const image_array = ['turtle-icon_1.png',
-                    'squirrel-icon_1.png',
-                    'frog-icon_1.png',
-                    'horse-icon_1.png',
-                    'gorilla-icon_1.png',
-                    'cat-icon_1.png',
-                    'kangoroo-icon_1.png',
-                    'fox-icon_1.png',
-                    'furby-icon_1.png',
-                    'camel-icon_1.png',
-                    'bee-icon_1.png',
-                    'butterfly-icon_1.png',
-                    'giraffe-icon_1.png',
-                    'tiger-icon_1.png',
-                    'zebra-icon_1.png'];
+    'squirrel-icon_1.png',
+    'frog-icon_1.png',
+    'horse-icon_1.png',
+    'gorilla-icon_1.png',
+    'cat-icon_1.png',
+    'kangoroo-icon_1.png',
+    'fox-icon_1.png',
+    'furby-icon_1.png',
+    'camel-icon_1.png',
+    'bee-icon_1.png',
+    'butterfly-icon_1.png',
+    'giraffe-icon_1.png',
+    'tiger-icon_1.png',
+    'pig-icon_1.png',
+    'zebra-icon_1.png'];
+
+var scrumMembers = [];
+var showIndex = -1;
 
 function random_image() {
     const randomImage = image_array[Math.floor(Math.random() * image_array.length)];
-    return 'img/icons/'+randomImage
+    return 'img/icons/' + randomImage
+}
+
+function randomImage(imageArray) {
+    let randomIndex = Math.floor(Math.random() * imageArray.length);
+    const randomImage = imageArray[randomIndex];
+    imageArray.splice(randomIndex, 1);
+    return 'img/icons/' + randomImage
 }
 
 const types = {
@@ -24,10 +35,10 @@ const types = {
     CENTER: 'center'
 };
 
-function create_member(name, id, type, image=null) {
+function create_member(name, id, type, image = null) {
     let chip = document.createElement("a");
     let img = document.createElement("img");
-    chip.setAttribute('id', 'member_'+id);
+    chip.setAttribute('id', 'member_' + id);
     img.setAttribute('alt', 'Contact Person');
     chip.textContent = name.trim();
 
@@ -43,21 +54,16 @@ function create_member(name, id, type, image=null) {
     }
 
     if (image === null) {
-        if(name.toLowerCase().includes('соня')){
-            img.setAttribute('src', "img/icons/pig-icon_1.png");
-        }
-        else {
-            img.setAttribute('src', random_image());
-        }
+        img.setAttribute('src', random_image());
     } else {
         img.setAttribute('src', image);
     }
     chip.appendChild(img);
 
-    if (type === types.REGULAR){
+    if (type === types.REGULAR) {
         let chips = document.getElementById("chips");
         chips.appendChild(chip);
-    } else if (type === types.CENTER){
+    } else if (type === types.CENTER) {
         let chips = document.getElementById("center_chip");
         chips.appendChild(chip);
     } else {
@@ -69,7 +75,7 @@ function create_member(name, id, type, image=null) {
 // Reset all
 function remove_member_center() {
     let elements = document.getElementById("center_chip").getElementsByTagName("a");
-    while(elements.length > 0){
+    while (elements.length > 0) {
         elements[0].parentNode.removeChild(elements[0]);
     }
 }
@@ -80,7 +86,7 @@ function move_member(id) {
     elem.classList.add("animated");
     elem.classList.add("fadeOut");
     let image = document.getElementById(id).getElementsByTagName("*")[0].getAttribute("src");
-    create_member(elem.textContent,-1,types.CENTER,image);
+    create_member(elem.textContent, -1, types.CENTER, image);
 }
 
 /*
@@ -92,14 +98,44 @@ function choose_random_member() {
     move_member(randomElement.getAttribute("id"));
 }
 
+function nextMember() {
+    if (showIndex < scrumMembers.length - 1) {
+        showIndex++;
+        showMember()
+    }
+}
+
+function back() {
+    if (showIndex > 0) {
+        showIndex--;
+        showMember()
+    }
+}
+
+function showMember() {
+    remove_member_center();
+
+    currentScrumMember = scrumMembers.find(member => member.order === showIndex);
+
+    let memberId = 'member_' + currentScrumMember.id;
+    let memberElement = document.getElementById(memberId);
+    memberElement.classList.add("animated");
+    memberElement.classList.add("fadeOut");
+
+    create_member(
+        currentScrumMember.name,
+        -1,
+        types.CENTER,
+        currentScrumMember.image
+    );
+}
+
+
 /*
     Create members from input field
  */
 function create_members() {
-    let elements = document.getElementById("chips").getElementsByTagName("a");
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
+    clearCurrentMembers();
     let members_string = document.getElementById("members_add").value;
     let members = members_string.split(',');
     let members_custom = document.getElementById("custom_members").getElementsByClassName("custom_toggle_button");
@@ -109,19 +145,107 @@ function create_members() {
     });
     let members_custom_inputs = document.getElementById("custom_members").getElementsByTagName("input");
     members_custom_inputs.forEach(function (item) {
-        if (item.type=='text') {
-            if(custom_members_checks[item.id.split("_")[1]]){
+        if (item.type === 'text') {
+            if (custom_members_checks[item.id.split("_")[1]]) {
                 members.push(item.value);
             }
         }
     });
-    
+
     members.forEach(function (item, index) {
-        if(item.length > 0) {
-            create_member(item, index,types.REGULAR,null);
+        if (item.length > 0) {
+            create_member(item, index, types.REGULAR, null);
         }
     });
     remove_member_center();
+}
+
+function clearCurrentMembers() {
+    let elements = document.getElementById("chips").getElementsByTagName("a");
+    while (elements.length > 0) {
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
+function createMembers() {
+    clearCurrentMembers();
+    generateMembers();
+    showMembers();
+}
+
+function showMembers() {
+    if (scrumMembers) {
+        scrumMembers.forEach(function (scrumMember, index) {
+            create_member(
+                scrumMember.name,
+                scrumMember.id,
+                types.REGULAR,
+                scrumMember.image
+            );
+        })
+    }
+}
+
+function generateMembers() {
+    let additionalMemberNamesString = document.getElementById("members_add").value;
+    let memberNames = [];
+    if (additionalMemberNamesString.length > 0) {
+        memberNames = additionalMemberNamesString.split(',');
+    }
+    let members_custom = document.getElementById("custom_members").getElementsByClassName("custom_toggle_button");
+    var custom_members_checks = {};
+    members_custom.forEach(function (item) {
+        custom_members_checks[item.id.split("_")[1]] = item.checked;
+    });
+    let members_custom_inputs = document.getElementById("custom_members").getElementsByTagName("input");
+    members_custom_inputs.forEach(function (item) {
+        if (item.type === 'text') {
+            if (custom_members_checks[item.id.split("_")[1]]) {
+                memberNames.push(item.value);
+            }
+        }
+    });
+
+    scrumMembers = [];
+    let imageArray = [];
+
+    let orders = generateOrder(memberNames.length);
+    memberNames.forEach(function (name, index) {
+        if (imageArray.length === 0) {
+            imageArray = [...image_array];
+        }
+        let image = randomImage(imageArray);
+        scrumMembers.push({
+            'id': index,
+            'name': name,
+            'image': image,
+            'order': orders[index]
+        });
+    });
+}
+
+function updateOrder() {
+    let orders = generateOrder(scrumMembers.length);
+    scrumMembers.forEach(function (member, index) {
+        member.order = orders[index];
+    });
+}
+
+function generateOrder(length) {
+    let temp = [];
+    let result = [];
+    for (i=0; i<length;i++) {
+        temp.push(i);
+        result.push(i);
+    }
+
+    let resultIndex = 0;
+    while (temp.length > 0) {
+        let index = Math.floor(Math.random() * temp.length);
+        result[resultIndex++] = temp[index];
+        temp.splice(index,1);
+    }
+    return result;
 }
 
 /*
@@ -132,8 +256,8 @@ function create_custom_members() {
     let members = ["Влад", "Лена", "Вика", "Саша С.", "Саша Ш.", "Антон", "Никита", "Ира", "Катя", "Маша", "Миша"];
     members.forEach(function (item, index) {
         let div = document.createElement('div');
-        div.innerHTML = 
-        `<input type="text" class="form-control name_input" aria-describedby="button-addon" id="in_${index}" value="${item}">
+        div.innerHTML =
+            `<input type="text" class="form-control name_input" aria-describedby="button-addon" id="in_${index}" value="${item}">
         <div class="input-group-append">
             <input type="checkbox" class="custom_toggle_button" id="tb_${index}" checked>
         </div>`;
@@ -143,17 +267,19 @@ function create_custom_members() {
 }
 
 
-
 /*
     Reset all members - set all visible and remove member from center
  */
 function reset() {
+    showIndex = -1;
+    updateOrder();
+
     let elements = document.getElementById("chips").getElementsByTagName("a");
-    elements.forEach(function (item){
-        if (item.classList.contains("animated")){
+    elements.forEach(function (item) {
+        if (item.classList.contains("animated")) {
             item.classList.remove("animated");
         }
-        if (item.classList.contains("fadeOut")){
+        if (item.classList.contains("fadeOut")) {
             item.classList.remove("fadeOut");
         }
     });

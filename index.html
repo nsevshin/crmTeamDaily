@@ -1,11 +1,16 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-34560270-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-34560270-2');
@@ -13,31 +18,40 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
         (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
         ym(61627630, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true,
-            webvisor:true
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
         });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/61627630" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/61627630" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
 
-    <meta name="yandex-verification" content="2f9c74ea3dcfa782" />
+    <meta name="yandex-verification" content="2f9c74ea3dcfa782"/>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Google -->
-    <meta name="google-site-verification" content="r6O7LEnKb8213g7NYmSy06DiOiqCfTVSjznZbiTkBsw" />
-    <meta name="description" content="Need an instrument to hold daily stand-up meeting online? Daily Scrum Board Online will help you to keep track of time, choose random speaker and park problems for later discussion.">
-    <meta name="keywords" content="daily, scrum, agile, daily scrum, daily stand-up, daily meeting, online, daily board, team member, countdown timer, problem, park problem, daily scrum meeting, standup, random speaker, speaker, github">
+    <meta name="google-site-verification" content="r6O7LEnKb8213g7NYmSy06DiOiqCfTVSjznZbiTkBsw"/>
+    <meta name="description"
+          content="Need an instrument to hold daily stand-up meeting online? Daily Scrum Board Online will help you to keep track of time, choose random speaker and park problems for later discussion.">
+    <meta name="keywords"
+          content="daily, scrum, agile, daily scrum, daily stand-up, daily meeting, online, daily board, team member, countdown timer, problem, park problem, daily scrum meeting, standup, random speaker, speaker, github">
 
     <!-- MD Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.15.0/css/bootstrap.min.css">
@@ -45,7 +59,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.15.0/css/mdb.lite.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="css/form.css">
-    <link rel="stylesheet" id="compiled.css-css" href="https://z9t4u9f6.stackpathcdn.com/wp-content/themes/mdbootstrap4/css/compiled-4.15.0.min.css?ver=4.15.0" type="text/css" media="all">
+    <link rel="stylesheet" id="compiled.css-css"
+          href="https://z9t4u9f6.stackpathcdn.com/wp-content/themes/mdbootstrap4/css/compiled-4.15.0.min.css?ver=4.15.0"
+          type="text/css" media="all">
     <link type="text/css" rel="stylesheet" href="css/materialize.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Daily Stand-Up Online - Dashboard</title>
@@ -59,7 +75,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Daily Stand-Up Board <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.html">Daily Stand-Up Board <span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About</a>
@@ -67,8 +84,9 @@
             </ul>
             <ul class="navbar-nav nav-flex-icons">
                 <li class="nav-item">
-                    
-                    <a class="nav-link" href="https://github.com/GeorgiiZaytsev/crmTeamDaily" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+
+                    <a class="nav-link" href="https://github.com/GeorgiiZaytsev/crmTeamDaily" target="_blank"><i
+                            class="fab fa-github fa-lg"></i></a>
                 </li>
             </ul>
         </div>
@@ -79,16 +97,21 @@
 
 
 <!-- Board -->
-<div class="container">
+<div class="container mw-100">
     <div class="row">
         <!-- Shuffler -->
         <div class="col-sm">
             <div class="row mt-0">
-                <button type="button" class="btn bg-green white-text p-1 pull-right mt-1" data-toggle="modal" data-target="#add_team_members_modal">
+                <button type="button" class="btn bg-green white-text p-1 pull-right mt-1" data-toggle="modal"
+                        data-target="#add_team_members_modal">
                     <i class=" fas fa-plus"></i> Insert team members
                 </button>
-                <button type="button" class="btn bg-green white-text p-1 pull-right mt-1" id="next_member" onclick="choose_random_member()">
+                <button type="button" class="btn bg-green white-text p-1 pull-right mt-1" id="next_member"
+                        onclick="nextMember()">
                     <i class="fas fa-arrow-right"></i> Next speaker
+                </button>
+                <button type="button" class="btn bg-cyan white-text p-1 pull-right mt-1" onclick="back()">
+                    <i class="fas fa-backward"></i> Back
                 </button>
                 <button type="button" class="btn bg-problem-card white-text p-1 pull-right mt-1" onclick="reset()">
                     <i class="fas fa-redo"></i> Reset
@@ -96,7 +119,7 @@
             </div>
             <div id="chips">
             </div>
-            <div id="center_chip" class = "d-flex align-items-center justify-content-center" style="height: 70%">
+            <div id="center_chip" class="d-flex align-items-center justify-content-center" style="height: 70%">
 
             </div>
         </div>
@@ -104,7 +127,7 @@
 
         <!-- Timer -->
         <div class="col-sm-5">
-            <div class = "row">
+            <div class="row">
                 <div class="col-sm">
                     <div class="card timer mt-1">
                         <form class="text-center">
@@ -125,67 +148,89 @@
                 </div>
             </div>
 
-                <p></p>
-                <div class = "row">
-                    <div class="col-sm">
-                        <div class = "row">
-                            <div class="col-sm">
-                                <div class="card hoverable">
-                                    <div class="card-body pt-0">
-                                        <h6 class="dark-grey-text my-4"><i class="fas fa-user-tie fa-2x text-primary"></i> Ведущий</h6>
-                                        <p class="text-muted font-weight-light mb-0">SCRUM-master</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="card hoverable">
-                                    <div class="card-body pt-0">
-                                        <h6 class="dark-grey-text my-4"><i class="fas fa-clock fa-2x text-primary"></i> Длит-сть</h6>
-                                        <p class="text-muted font-weight-light mb-0">15 minutes</p>
-                                    </div>
+            <p></p>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card hoverable">
+                                <div class="card-body pt-0">
+                                    <h6 class="dark-grey-text my-4"><i class="fas fa-user-tie fa-2x text-primary"></i>
+                                        Ведущий</h6>
+                                    <p class="text-muted font-weight-light mb-0">SCRUM-master</p>
                                 </div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card hoverable">
-                                    <div class="card-body pt-0">
-                                        <h6 class="dark-grey-text my-4"><i class="fas fa-download fa-2x text-primary"></i> Входные данные</h6>
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item text-muted font-weight-light mb-0">Что сделал за вчера?</li>
-                                            <li class="list-group-item text-muted font-weight-light mb-0">Что буду делать сегодня?</li>
-                                            <li class="list-group-item text-muted font-weight-light mb-0">Есть ли какие-нибудь трудности?</li>
-                                        </ul>
-                                    </div>
+                        <div class="col-sm">
+                            <div class="card hoverable">
+                                <div class="card-body pt-0">
+                                    <h6 class="dark-grey-text my-4"><i class="fas fa-clock fa-2x text-primary"></i>
+                                        Длит-сть</h6>
+                                    <p class="text-muted font-weight-light mb-0">15 minutes</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm">
-                        <div class="card hoverable">
-                            <div class="card-body pt-0">
-                                <h6 class="dark-grey-text my-4"><i class="fas fa-bullseye fa-2x text-primary"></i> Цель</h6>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item text-muted font-weight-light mb-0">Синхронизация участников команды</li>
-                                    <li class="list-group-item text-muted font-weight-light mb-0">Обеспечение прозрачности рабочего процесса</li>
-                                    <li class="list-group-item text-muted font-weight-light mb-0">Поддержание эфективности и производительности команды</li>
-                                </ul>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card hoverable">
+                                <div class="card-body pt-0">
+                                    <h6 class="dark-grey-text my-4"><i class="fas fa-download fa-2x text-primary"></i>
+                                        Входные данные</h6>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item text-muted font-weight-light mb-0">Что сделал за
+                                            вчера?
+                                        </li>
+                                        <li class="list-group-item text-muted font-weight-light mb-0">Что буду делать
+                                            сегодня?
+                                        </li>
+                                        <li class="list-group-item text-muted font-weight-light mb-0">Есть ли
+                                            какие-нибудь трудности?
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            <p></p>
-            <div class = "row">
                 <div class="col-sm">
                     <div class="card hoverable">
                         <div class="card-body pt-0">
-                            <h6 class="dark-grey-text my-4"><i class="fas fa-list-alt fa-2x text-primary"></i> Правила</h6>
+                            <h6 class="dark-grey-text my-4"><i class="fas fa-bullseye fa-2x text-primary"></i> Цель</h6>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item text-muted font-weight-light mb-0">Рассказывать с фокусом на результат: говорить, что было конкретно сделано</li>
-                                <li class="list-group-item text-muted font-weight-light mb-0">Не рассказывать про общеизвестные вещи</li>
-                                <li class="list-group-item text-muted font-weight-light mb-0">Парковать проблемы, не решать их сразу</li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Синхронизация участников
+                                    команды
+                                </li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Обеспечение прозрачности
+                                    рабочего процесса
+                                </li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Поддержание эфективности и
+                                    производительности команды
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p></p>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card hoverable">
+                        <div class="card-body pt-0">
+                            <h6 class="dark-grey-text my-4"><i class="fas fa-list-alt fa-2x text-primary"></i> Правила
+                            </h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-muted font-weight-light mb-0">Рассказывать с фокусом на
+                                    результат: говорить, что было конкретно сделано
+                                </li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Не рассказывать про
+                                    общеизвестные вещи
+                                </li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Парковать проблемы, не
+                                    решать их сразу
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -193,10 +238,13 @@
                 <div class="col-sm">
                     <div class="card hoverable">
                         <div class="card-body pt-0">
-                            <h6 class="dark-grey-text my-4"><i class="fas fa-universal-access fa-2x text-primary"></i> Дежурный</h6>
+                            <h6 class="dark-grey-text my-4"><i class="fas fa-universal-access fa-2x text-primary"></i>
+                                Дежурный</h6>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item text-muted font-weight-light mb-0">Количество запросов</li>
-                                <li class="list-group-item text-muted font-weight-light mb-0">Аномалии/классификация запросов</li>
+                                <li class="list-group-item text-muted font-weight-light mb-0">Аномалии/классификация
+                                    запросов
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -208,8 +256,9 @@
         <!-- Cards -->
         <div class="col-sm-4" id="form-column">
             <img width="450" src="team.png">
+            <div id="list" style="display: none"></div>
         </div>
-        <div id="list" style="display: none"></div>
+
         <!-- Cards -->
     </div>
 </div>
@@ -229,7 +278,9 @@
                 Time's Up! Stop daily :)
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary dismiss-alarm-sounds waves-effect" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary dismiss-alarm-sounds waves-effect" data-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -245,21 +296,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                To add team members to dashboard just insert team members in the input field below in the comma separated way.
+                To add team members to dashboard just insert team members in the input field below in the comma
+                separated way.
                 <blockquote class="blockquote bq-primary">
                     <div class="bq-title">Example</div>
                     John, Sonya, Alex, Fred
                 </blockquote>
                 <hr>
                 <div class="md-form">
-                    <input type="text" id="members_add" class="form-control name_input" onfocus="onEnter(this)" onblur="onExit(this)">
+                    <input type="text" id="members_add" class="form-control name_input" onfocus="onEnter(this)"
+                           onblur="onExit(this)">
                     <label for="members_add" class="">Team members (comma separated)</label>
                 </div>
                 <div class="md-form" id='custom_members'></div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn bg-problem-card white-text" data-dismiss="modal" onclick="document.getElementById('members_add').value=''">Close</button>
-                <button type="button" class="btn bg-green white-text" onclick="create_members()" data-dismiss="modal">Save changes</button>
+                <button type="button" class="btn bg-problem-card white-text" data-dismiss="modal"
+                        onclick="document.getElementById('members_add').value=''">Close
+                </button>
+                <button type="button" class="btn bg-green white-text" onclick="createMembers()" data-dismiss="modal">
+                    Save changes
+                </button>
             </div>
         </div>
     </div>
@@ -267,10 +324,16 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/easytimer.js@4.1.1/dist/easytimer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.15.0/js/mdb.min.js"></script>
 <script type="text/javascript" src="js/form.js"></script>
@@ -283,13 +346,13 @@
     }
 
     function onEnter(element) {
-        if ((element.value !==undefined && element.value.length >=0) ||$(this).attr('placeholder') !==null) {
+        if ((element.value !== undefined && element.value.length >= 0) || $(this).attr('placeholder') !== null) {
             element.parentNode.querySelector("label").classList.add("active");
         }
     }
 
     function onExit(element) {
-        if ((element.value !==undefined && element.value.length === 0) ||$(this).attr('placeholder') ===null) {
+        if ((element.value !== undefined && element.value.length === 0) || $(this).attr('placeholder') === null) {
             element.parentNode.querySelector("label").classList.remove("active");
         }
     }
