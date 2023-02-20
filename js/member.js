@@ -3,6 +3,7 @@ const image_array = ['turtle-icon_1.png',
     'frog-icon_1.png',
     'horse-icon_1.png',
     'gorilla-icon_1.png',
+    'b24-icon_1.png',
     'cat-icon_1.png',
     'kangoroo-icon_1.png',
     'fox-icon_1.png',
@@ -14,6 +15,7 @@ const image_array = ['turtle-icon_1.png',
     'tiger-icon_1.png',
     'pig-icon_1.png',
     'zebra-icon_1.png'];
+const LAST_MEMBER = "Лена";
 
 var scrumMembers = [];
 var showIndex = -1;
@@ -161,6 +163,7 @@ function create_members() {
 }
 
 function clearCurrentMembers() {
+    remove_member_center();
     let elements = document.getElementById("chips").getElementsByTagName("a");
     while (elements.length > 0) {
         elements[0].parentNode.removeChild(elements[0]);
@@ -175,7 +178,7 @@ function createMembers() {
 
 function showMembers() {
     if (scrumMembers) {
-        scrumMembers.forEach(function (scrumMember, index) {
+        scrumMembers.forEach(function (scrumMember) {
             create_member(
                 scrumMember.name,
                 scrumMember.id,
@@ -209,7 +212,13 @@ function generateMembers() {
     scrumMembers = [];
     let imageArray = [];
 
-    let orders = generateOrder(memberNames.length);
+    let lastMemberIndex = memberNames.findIndex(memberName => memberName === LAST_MEMBER);
+    if (lastMemberIndex>=0) {
+        memberNames.splice(lastMemberIndex, 1);
+        memberNames.push(LAST_MEMBER);
+    }
+    let orders = generateOrder(memberNames.length, lastMemberIndex>=0);
+
     memberNames.forEach(function (name, index) {
         if (imageArray.length === 0) {
             imageArray = [...image_array];
@@ -225,16 +234,19 @@ function generateMembers() {
 }
 
 function updateOrder() {
-    let orders = generateOrder(scrumMembers.length);
+    let lastUserInMembers = scrumMembers.findIndex(member => member.name === LAST_MEMBER) >= 0;
+    let orders = generateOrder(scrumMembers.length, lastUserInMembers);
     scrumMembers.forEach(function (member, index) {
         member.order = orders[index];
     });
 }
 
-function generateOrder(length) {
+function generateOrder(length, lastUserInList) {
     let temp = [];
     let result = [];
-    for (i=0; i<length;i++) {
+
+    let generateLength = lastUserInList ? length - 1 : length;
+    for (i=0; i<generateLength;i++) {
         temp.push(i);
         result.push(i);
     }
@@ -244,6 +256,9 @@ function generateOrder(length) {
         let index = Math.floor(Math.random() * temp.length);
         result[resultIndex++] = temp[index];
         temp.splice(index,1);
+    }
+    if (lastUserInList) {
+        result.push(result.length);
     }
     return result;
 }
