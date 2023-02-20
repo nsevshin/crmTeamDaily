@@ -163,6 +163,7 @@ function create_members() {
 }
 
 function clearCurrentMembers() {
+    showIndex = 0;
     remove_member_center();
     let elements = document.getElementById("chips").getElementsByTagName("a");
     while (elements.length > 0) {
