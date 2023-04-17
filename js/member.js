@@ -15,6 +15,13 @@ const image_array = ['turtle-icon_1.png',
     'tiger-icon_1.png',
     'pig-icon_1.png',
     'zebra-icon_1.png'];
+
+const farewell_image_array = [
+    'fw_best_friends.png',
+    'fw_miss_you.png',
+    'fw_thanks.png'
+];
+
 const LAST_MEMBER = "Лена";
 
 var scrumMembers = [];
@@ -82,23 +89,23 @@ function remove_member_center() {
     }
 }
 
-function move_member(id) {
-    remove_member_center();
-    let elem = document.getElementById(id);
-    elem.classList.add("animated");
-    elem.classList.add("fadeOut");
-    let image = document.getElementById(id).getElementsByTagName("*")[0].getAttribute("src");
-    create_member(elem.textContent, -1, types.CENTER, image);
-}
+// function move_member(id) {
+//     remove_member_center();
+//     let elem = document.getElementById(id);
+//     elem.classList.add("animated");
+//     elem.classList.add("fadeOut");
+//     let image = document.getElementById(id).getElementsByTagName("*")[0].getAttribute("src");
+//     create_member(elem.textContent, -1, types.CENTER, image);
+// }
 
 /*
     Choose next random member to move in center
  */
-function choose_random_member() {
-    let elements = document.getElementById("chips").querySelectorAll("a:not(.animated)");
-    const randomElement = elements[Math.floor(Math.random() * elements.length)];
-    move_member(randomElement.getAttribute("id"));
-}
+// function choose_random_member() {
+//     let elements = document.getElementById("chips").querySelectorAll("a:not(.animated)");
+//     const randomElement = elements[Math.floor(Math.random() * elements.length)];
+//     move_member(randomElement.getAttribute("id"));
+// }
 
 function nextMember() {
     if (showIndex < scrumMembers.length - 1) {
@@ -136,31 +143,31 @@ function showMember() {
 /*
     Create members from input field
  */
-function create_members() {
-    clearCurrentMembers();
-    let members_string = document.getElementById("members_add").value;
-    let members = members_string.split(',');
-    let members_custom = document.getElementById("custom_members").getElementsByClassName("custom_toggle_button");
-    var custom_members_checks = {};
-    members_custom.forEach(function (item) {
-        custom_members_checks[item.id.split("_")[1]] = item.checked;
-    });
-    let members_custom_inputs = document.getElementById("custom_members").getElementsByTagName("input");
-    members_custom_inputs.forEach(function (item) {
-        if (item.type === 'text') {
-            if (custom_members_checks[item.id.split("_")[1]]) {
-                members.push(item.value);
-            }
-        }
-    });
-
-    members.forEach(function (item, index) {
-        if (item.length > 0) {
-            create_member(item, index, types.REGULAR, null);
-        }
-    });
-    remove_member_center();
-}
+// function create_members() {
+//     clearCurrentMembers();
+//     let members_string = document.getElementById("members_add").value;
+//     let members = members_string.split(',');
+//     let members_custom = document.getElementById("custom_members").getElementsByClassName("custom_toggle_button");
+//     var custom_members_checks = {};
+//     members_custom.forEach(function (item) {
+//         custom_members_checks[item.id.split("_")[1]] = item.checked;
+//     });
+//     let members_custom_inputs = document.getElementById("custom_members").getElementsByTagName("input");
+//     members_custom_inputs.forEach(function (item) {
+//         if (item.type === 'text') {
+//             if (custom_members_checks[item.id.split("_")[1]]) {
+//                 members.push(item.value);
+//             }
+//         }
+//     });
+//
+//     members.forEach(function (item, index) {
+//         if (item.length > 0) {
+//             create_member(item, index, types.REGULAR, null);
+//         }
+//     });
+//     remove_member_center();
+// }
 
 function clearCurrentMembers() {
     showIndex = -1;
@@ -212,6 +219,7 @@ function generateMembers() {
 
     scrumMembers = [];
     let imageArray = [];
+    let farewellImageArray = [...farewell_image_array];
 
     let lastMemberIndex = memberNames.findIndex(memberName => memberName === LAST_MEMBER);
     if (lastMemberIndex>=0) {
@@ -221,10 +229,16 @@ function generateMembers() {
     let orders = generateOrder(memberNames.length, lastMemberIndex>=0);
 
     memberNames.forEach(function (name, index) {
-        if (imageArray.length === 0) {
-            imageArray = [...image_array];
+        let image;
+        if (name === LAST_MEMBER) {
+            image = randomImage(farewellImageArray);
+        } else {
+            if (imageArray.length === 0) {
+                imageArray = [...image_array];
+            }
+            image = randomImage(imageArray);
         }
-        let image = randomImage(imageArray);
+
         scrumMembers.push({
             'id': index,
             'name': name,
