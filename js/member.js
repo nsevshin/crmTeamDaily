@@ -17,8 +17,8 @@ const image_array = ['turtle-icon_1.png',
     'zebra-icon_1.png'];
 
 const farewell_image_array = [
-    'fw_best_friends.png',
-    'fw_miss_you.png'
+    'fw_best_friends.png'
+    // 'fw_miss_you.png'
     // 'fw_thanks.png'
 ];
 
