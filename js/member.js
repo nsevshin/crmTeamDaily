@@ -22,7 +22,7 @@ const farewell_image_array = [
     // 'fw_thanks.png'
 ];
 
-const LAST_MEMBER = "Лена";
+const LAST_MEMBER = "Ира";
 
 var scrumMembers = [];
 var showIndex = -1;
@@ -230,8 +230,8 @@ function generateMembers() {
 
     memberNames.forEach(function (name, index) {
         let image;
-        if (name === LAST_MEMBER) {
-            image = randomImage(farewellImageArray);
+        if (name === 'Вика') {
+            image = 'img/icons/hb_tort.png';
         } else {
             if (imageArray.length === 0) {
                 imageArray = [...image_array];
@@ -283,7 +283,8 @@ function generateOrder(length, lastUserInList) {
  */
 function create_custom_members() {
     var parent = document.querySelector('#custom_members');
-    let members = ["Влад", "Лена", "Вика", "Саша С.", "Саша Ш.", "Антон", "Никита", "Ира", "Катя", "Маша", "Миша"];
+    let members = ["Влад", "Вика", "Саша С.", "Саша Ш.", "Антон", "Никита", "Ира", "Катя", "Маша", "Миша", "Дима"];
+    let alsoMembers = ["Лена", "Гоша"];
     members.forEach(function (item, index) {
         let div = document.createElement('div');
         div.innerHTML =
