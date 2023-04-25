@@ -230,8 +230,8 @@ function generateMembers() {
 
     memberNames.forEach(function (name, index) {
         let image;
-        if (name === 'Вика') {
-            image = 'img/icons/hb_tort.png';
+        if (name === 'Миша') {
+            image = 'img/icons/misha_clown.png';
         } else {
             if (imageArray.length === 0) {
                 imageArray = [...image_array];
